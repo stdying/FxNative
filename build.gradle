@@ -1,0 +1,57 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'com.gluonhq:gluonfx-gradle-plugin:1.0.4'
+    }
+}
+//apply plugin: 'com.gluonhq.gluonfx-gradle-plugin'
+
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.0'
+    id 'com.gluonhq.gluonfx-gradle-plugin' version '1.0.4'
+}
+
+javafx {
+    version = "11.0.2"
+    modules = [ 'javafx.controls' ]
+}
+
+gluonfx {
+    graalvmHome = "D:\\develop\\jdk\\graalvm-ce-java11-21.2.0"
+}
+
+mainClassName = 'HelloFX'
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+
+test {
+    useJUnitPlatform()
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
